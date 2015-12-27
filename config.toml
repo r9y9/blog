@@ -8,9 +8,7 @@ author = "Ryuichi YAMAMOTO"
 
 [params]
   author    = "Ryuichi YAMAMOTO"
-  bio       = "fmt.Println(\"Hello world!\")"
   logo      = "/images/r9y9.jpg"
-  copyright = "Ryuichi YAMAMOTO All rights reserved."
   twitter   = "r9y9"
   github    = "r9y9"
   analytics = "UA-44433856-1"
