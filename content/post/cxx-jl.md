@@ -223,3 +223,7 @@ https://github.com/r9y9/LibFreenect2.jl
 現在 Julia community では、llvm 3.3 から llvm 3.7.1 に移行しようとする動きがあるので（ref: [julia/issues/9336](https://github.com/JuliaLang/julia/issues/9336), [julia/pull/14430](https://github.com/JuliaLang/julia/pull/14430)）、移行後は、もう少しビルドが楽になるかもしれません。
 
 実は、この記事を読んでも、きっと今は　Cxx.jl をビルドできないんじゃないかなと思うんですが、もしどうしてもビルドしたい、ということであれば、僕のローカルの llvm, clang, lldb, julia の revision を調べて教えるので、言ってください。
+
+### 2015/12/28 追記
+
+[Cxx.jl を動作させるための julia, llvm, clang, lldb のコミットハッシュ | qiita](http://qiita.com/r9y9/items/37633ed37e22612b5224)
