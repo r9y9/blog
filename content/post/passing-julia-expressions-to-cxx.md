@@ -24,7 +24,7 @@ Keno氏によるJuliaCon 2015 の発表 [Keno Fischer: Shaving the Yak](https://
 
 ## 前置き：C++をJulia上で使う
 
-Cxx.jlを使えば、C++をJulia上で非常にスムーズに扱えうことができます。例えば、C++の`std::vector<T>`を使いたい、さらにはJuliaの`filter`関数を`std::vector<T>`に対して使えるようにしたい、といった場合は、以下に示すように、ほんのすこしのコードを書くだけでできます。
+Cxx.jlを使えば、C++をJulia上で非常にスムーズに扱うことができます。例えば、C++の`std::vector<T>`を使いたい、さらにはJuliaの`filter`関数を`std::vector<T>`に対して使えるようにしたい、といった場合は、以下に示すように、ほんのすこしのコードを書くだけでできます。
 
 
 準備：
