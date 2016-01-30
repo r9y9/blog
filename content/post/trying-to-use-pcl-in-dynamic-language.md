@@ -108,7 +108,7 @@ PCL.jl で、少なくとも最低限以下はできますということで。�
 <iframe width="560" height="315" src="https://www.youtube.com/embed/rGdsNoK3n9Q" frameborder="0" allowfullscreen></iframe></div>
 <br/>
 
-画質低い & クロップが適当で一部しか見えませんが、諸々の処理を含めて fpsは15くらいでしょうか。depthとrgb imageのregistration、その結果の点群への変換に関しては、20~30fps程度でした。real-timeで点群を処理するようなアプリケーションを書く場合は、現実的にはC++で書くことになるかと思います。
+画質低い & クロップが適当で一部しか見えませんが、諸々の処理を含めて fpsは15くらいでしょうか。depthとrgb imageのregistration、その結果の点群への変換に関しては、~~20~30fps程度でした~~ 測りなおしたら平均40fpsくらいはでてました。real-timeで点群を処理するようなアプリケーションを書く場合は、現実的にはC++で書くことになるかと思います。
 
 ### 余談
 
