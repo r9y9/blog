@@ -34,7 +34,10 @@ h2.entry-title {
     border-bottom: none;
 }
 
-li { margin-bottom: 0.5rem; }
+li {
+    margin-bottom: 0.5rem;
+    margin-left: 0.7em;
+}
 
 img {
   max-width: 100%;
