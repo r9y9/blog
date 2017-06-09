@@ -145,3 +145,51 @@ address a {
 .github {
     float: right;
 }
+
+blockquote {
+    position: relative;
+    padding: 10px 10px 10px 32px;
+    box-sizing: border-box;
+    font-style: italic;
+    color: #464646;
+    background: #e0e0e0;
+}
+
+blockquote:before{
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    vertical-align: middle;
+    content: "\f10d";
+    font-family: FontAwesome;
+    color: #e0e0e0;
+    font-size: 22px;
+    line-height: 1;
+    z-index: 2;
+}
+
+blockquote:after{
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    border-width: 0 0 40px 40px;
+    border-style: solid;
+    border-color: transparent #ffffff;
+}
+
+blockquote p {
+    position: relative;
+    padding: 0;
+    margin: 10px 0;
+    z-index: 3;
+    line-height: 1.7;
+}
+
+blockquote cite {
+    display: block;
+    text-align: right;
+    color: #888888;
+    font-size: 0.9em;
+}
