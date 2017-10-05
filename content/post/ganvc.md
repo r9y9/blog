@@ -42,7 +42,7 @@ title = "【声質変換編】Statistical Parametric Speech Synthesis Incorporat
 
 - [Yuki Saito, Shinnosuke Takamichi, and Hiroshi Saruwatari, "Voice conversion using input-to-output highway networks," IEICE Transactions on Information and Systems, Vol.E100-D, No.8, pp.1925--1928, Aug. 2017](https://www.jstage.jst.go.jp/article/transinf/E100.D/8/E100.D_2017EDL8034/_article)
 
-で述べられている highway network を用います。ただし、活性化関数をReLUからLeakyReLUにしたり、Dropoutを入れたり、アーキテクチャは微妙に変えています。前者は、調べたら勾配が消えにくくて学習の不安定なGANに良いと書いてある記事があったので（ちゃんと理解しておらず安直ですが、実験したところ悪影響はなさそうでしたので様子見）、後者は、GANの学習の安定化につながった気がします（少なくともTTSでは）。Discriminatorには、Dropout付きの多層ニューラルネットを使いました。MGE loss と ADV loss をバランスする重み `w_d` は、 1.0 にしました。層の数、ニューロンの数等、その他詳細が知りたい方は、コードを参照してください。実験にしようしたコードの正確なバージョンは  [5c26d51](https://github.com/r9y9/gantts/tree/5c26d51c0a8655380e2a06627c61915f81913909) です。ハイパーパラメータは [こちら](https://github.com/r9y9/gantts/blob/5c26d51c0a8655380e2a06627c61915f81913909/hparams.py) です。
+で述べられている highway network を用います。ただし、活性化関数をReLUからLeakyReLUにしたり、Dropoutを入れたり、アーキテクチャは微妙に変えています。前者は、調べたら勾配が消えにくくて学習の不安定なGANに良いと書いてある記事があったので（ちゃんと理解しておらず安直ですが、実験したところ悪影響はなさそうでしたので様子見）、後者は、GANの学習の安定化につながった気がします（少なくともTTSでは）。Discriminatorには、Dropout付きの多層ニューラルネットを使いました。MGE loss と ADV loss をバランスする重み `w_d` は、 1.0 にしました。層の数、ニューロンの数等、その他詳細が知りたい方は、コードを参照してください。実験にしようしたコードの正確なバージョンは  [ccbb51b](https://github.com/r9y9/gantts/tree/ccbb51b51634b272f0a71f29ad4c28edd8ce3429) です。ハイパーパラメータは [こちら](https://github.com/r9y9/gantts/blob/ccbb51b51634b272f0a71f29ad4c28edd8ce3429/hparams.py) です。
 
 ここで示す結果を再現したい場合は、
 
