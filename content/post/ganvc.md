@@ -56,7 +56,7 @@ title = "【声質変換編】Statistical Parametric Speech Synthesis Incorporat
 ./vc_demo.sh ~/data/cmu_arctic
 ```
 
-なお実行には、GPUメモリが4GBくらいは必要です（バッチサイズ32の場合）。GTX 1080Ti + i7-7700K の計算環境で、約1時間半くらいで終わります。スクリプト実行が完了すれば、`generated` ディレクトリに、ベースライン/GAN それぞれで変換した音声が出力されます。以下に順に示す図については、デモノートブックにあります。
+なお実行には、GPUメモリが4GBくらいは必要です（バッチサイズ32の場合）。GTX 1080Ti + i7-7700K の計算環境で、約1時間半くらいで終わります。スクリプト実行が完了すれば、`generated` ディレクトリに、ベースライン/GAN それぞれで変換した音声が出力されます。以下に順に示す図については、[デモノートブック](http://nbviewer.jupyter.org/github/r9y9/gantts/blob/master/notebooks/Test%20VC.ipynb) を実行すると作ることができます。
 
 ### 変換音声の比較
 
@@ -66,6 +66,8 @@ title = "【声質変換編】Statistical Parametric Speech Synthesis Incorporat
 2. ターゲット話者の音声
 3. **MGE Loss** を最小化して得られたモデルによる変換音声
 4. **MGE loss + ADV loss** を最小化して得られたモデルによる変換音声
+
+比較しやすいように、音量はsoxで正規化しました。
 
 **arctic_a0496**
 
@@ -223,7 +225,7 @@ GVをより一般化ものとして、変調スペクトルという概念があ
 
 ## 参考
 
-Arxivのあるペーパーだけでなく、その他いろいろ参考にしました。ありがとうございます。
+Arxivにあるペーパーだけでなく、その他いろいろ参考にしました。ありがとうございます。
 
 - [Yuki Saito, Shinnosuke Takamichi, Hiroshi Saruwatari, "Statistical Parametric Speech Synthesis Incorporating Generative Adversarial Networks", arXiv:1709.08041 [cs.SD], Sep. 2017](https://arxiv.org/abs/1709.08041)
 - [Yuki Saito, Shinnosuke Takamichi, and Hiroshi Saruwatari, "Training algorithm to deceive anti-spoofing verification for DNN-based text-to-speech synthesis," IPSJ SIG Technical Report, 2017-SLP-115, no. 1, pp. 1-6, Feb., 2017. (in Japanese)](http://sython.org/papers/SIG-SLP/saito201702slp.pdf)
