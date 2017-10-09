@@ -2,9 +2,13 @@
 date = "2017-10-05T23:25:36+09:00"
 draft = false
 title = "【声質変換編】Statistical Parametric Speech Synthesis Incorporating Generative Adversarial Networks [arXiv:1709.08041]"
+tags  = [ "Speech", "DNN"]
+categories = ["Speech synthesis", "Python"]
 
 +++
 
+
+論文リンク: [arXiv:1709.08041](https://arxiv.org/abs/1709.08041)
 
 2017年9月末に、表題の [論文](https://arxiv.org/abs/1709.08041) が公開されたのと、[nnmnkwii](https://github.com/r9y9/nnmnkwii) という designed for easy and fast prototyping を目指すライブラリを作ったのもあるので、実装してみました。僕が実験した限りでは、声質変換 (Voice conversion; VC) では安定して良くなりました（音声合成ではまだ実験中です）。この記事では、声質変換について僕が実験した結果をまとめようと思います。音声合成については、また後日まとめます
 
@@ -42,7 +46,7 @@ title = "【声質変換編】Statistical Parametric Speech Synthesis Incorporat
 
 - [Yuki Saito, Shinnosuke Takamichi, and Hiroshi Saruwatari, "Voice conversion using input-to-output highway networks," IEICE Transactions on Information and Systems, Vol.E100-D, No.8, pp.1925--1928, Aug. 2017](https://www.jstage.jst.go.jp/article/transinf/E100.D/8/E100.D_2017EDL8034/_article)
 
-で述べられている highway network を用います。ただし、活性化関数をReLUからLeakyReLUにしたり、Dropoutを入れたり、アーキテクチャは微妙に変えています。前者は、調べたら勾配が消えにくくて学習の不安定なGANに良いと書いてある記事があったので（ちゃんと理解しておらず安直ですが、実験したところ悪影響はなさそうでしたので様子見）、後者は、GANの学習の安定化につながった気がします（少なくともTTSでは）。Discriminatorには、Dropout付きの多層ニューラルネットを使いました。MGE loss と ADV loss をバランスする重み `w_d` は、 1.0 にしました。層の数、ニューロンの数等、その他詳細が知りたい方は、コードを参照してください。実験にしようしたコードの正確なバージョンは  [ccbb51b](https://github.com/r9y9/gantts/tree/ccbb51b51634b272f0a71f29ad4c28edd8ce3429) です。ハイパーパラメータは [こちら](https://github.com/r9y9/gantts/blob/ccbb51b51634b272f0a71f29ad4c28edd8ce3429/hparams.py) です。
+で述べられている highway network を用います。ただし、活性化関数をReLUからLeakyReLUにしたり、Dropoutを入れたり、アーキテクチャは微妙に変えています。前者は、調べたら勾配が消えにくくて学習の不安定なGANに良いと書いてある記事があったので（ちゃんと理解しておらず安直ですが、実験したところ悪影響はなさそうでしたので様子見）、後者は、GANの学習の安定化につながった気がします（少なくともTTSでは）。Discriminatorには、Dropout付きの多層ニューラルネットを使いました。MGE loss と ADV loss をバランスする重み `w_d` は、 1.0 にしました。層の数、ニューロンの数等、その他詳細が知りたい方は、コードを参照してください。実験に使用したコードの正確なバージョンは  [ccbb51b](https://github.com/r9y9/gantts/tree/ccbb51b51634b272f0a71f29ad4c28edd8ce3429) です。ハイパーパラメータは [こちら](https://github.com/r9y9/gantts/blob/ccbb51b51634b272f0a71f29ad4c28edd8ce3429/hparams.py) です。
 
 ここで示す結果を再現したい場合は、
 
