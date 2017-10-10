@@ -91,7 +91,7 @@ IDEも好きですし、emacsも好きなのですが、同じくらいJupyter�
 
 ### データセット
 
-今回は、HTSのNIT-ATR503のデモからデータを拝借します。ライブラリを使って音声合成を実現するためのデータとして、最低限以下が必要です。
+今回は、HTSのNIT-ATR503のデモデータ ([ライセンス](https://github.com/r9y9/nnmnkwii_gallery/blob/4899437e22528399ca50c34097a2db2bed782f8b/data/NIT-ATR503_COPYING)) を拝借します。ライブラリを使って音声合成を実現するためのデータとして、最低限以下が必要です。
 
 - (state or phone level) フルコンテキストラベル
 - Wavファイル
