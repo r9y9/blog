@@ -7,7 +7,9 @@ categories = ["Speech synthesis", "Python"]
 
 +++
 
-論文リンク: [arXiv:1709.08041](https://arxiv.org/abs/1709.08041)
+**10/11 追記**: IEEE TASLPのペーパー (Open access) が公開されたようなので、リンクを貼っておきます: http://ieeexplore.ieee.org/document/8063435/
+
+arXiv論文リンク: [arXiv:1709.08041](https://arxiv.org/abs/1709.08041)
 
 [前回の記事](/blog/2017/10/09/gantts/) の続きです。これでこのシリーズは終わりの予定です。
 
@@ -354,6 +356,8 @@ Your browser does not support the audio element.
 ## おわりに
 
 アイデアはシンプル、効果は素晴らしいという、僕の好きな（試したくなる）研究の紹介でした。ありがとうございました。
+
+追記: 図を作るのに使ったノートブックは [こちら](http://nbviewer.jupyter.org/gist/r9y9/185a56417cee27d9f785b8caf1c9f5ec) においておきました。
 
 
 ## 参考

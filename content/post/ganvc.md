@@ -8,7 +8,10 @@ categories = ["Speech synthesis", "Python"]
 +++
 
 
-論文リンク: [arXiv:1709.08041](https://arxiv.org/abs/1709.08041)
+**10/11 追記**: IEEE TASLPのペーパー (Open access) が公開されたようなので、リンクを貼っておきます: http://ieeexplore.ieee.org/document/8063435/
+
+arXiv論文リンク: [arXiv:1709.08041](https://arxiv.org/abs/1709.08041)
+
 
 2017年9月末に、表題の [論文](https://arxiv.org/abs/1709.08041) が公開されたのと、[nnmnkwii](https://github.com/r9y9/nnmnkwii) という designed for easy and fast prototyping を目指すライブラリを作ったのもあるので、実装してみました。僕が実験した限りでは、声質変換 (Voice conversion; VC) では安定して良くなりました（音声合成ではまだ実験中です）。この記事では、声質変換について僕が実験した結果をまとめようと思います。音声合成については、また後日まとめます
 

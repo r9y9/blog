@@ -1,5 +1,5 @@
 +++
-date = "2017-10-09T20:00:00+09:00"
+date = "2017-10-09T2:00:00+09:00"
 draft = false
 title = "【音声合成編】Statistical Parametric Speech Synthesis Incorporating Generative Adversarial Networks [arXiv:1709.08041]"
 tags  = [ "Speech", "DNN"]
@@ -7,7 +7,10 @@ categories = ["Speech synthesis", "Python"]
 
 +++
 
-論文リンク: [arXiv:1709.08041](https://arxiv.org/abs/1709.08041)
+
+**10/11 追記**: IEEE TASLPのペーパー (Open access) が公開されたようなので、リンクを貼っておきます: http://ieeexplore.ieee.org/document/8063435/
+
+arXiv論文リンク: [arXiv:1709.08041](https://arxiv.org/abs/1709.08041)
 
 [前回の記事](/blog/2017/10/05/ganvc/) の続きです。音響モデルの学習にGANを使うというアイデアは、声質変換だけでなく音声合成にも応用できます。[CMU ARCTIC](http://festvox.org/cmu_arctic/) を使った英語音声合成の実験を行って、ある程度良い結果がでたので、まとめようと思います。音声サンプルだけ聴きたい方は真ん中の方まで読み飛ばしてください。
 
