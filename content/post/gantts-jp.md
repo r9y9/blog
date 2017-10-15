@@ -357,6 +357,11 @@ Your browser does not support the audio element.
 
 アイデアはシンプル、効果は素晴らしいという、僕の好きな（試したくなる）研究の紹介でした。ありがとうございました。
 
+GANシリーズのその他記事へのリンクは以下の通りです。
+
+- [GAN 声質変換 (en) 編はこちら](/blog/2017/10/05/ganvc/)
+- [GAN 音声合成 (en) 編はこちら](/blog/2017/10/09/gantts/)
+
 追記: 図を作るのに使ったノートブックは [こちら](http://nbviewer.jupyter.org/gist/r9y9/185a56417cee27d9f785b8caf1c9f5ec) においておきました。
 
 
