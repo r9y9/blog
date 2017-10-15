@@ -8,7 +8,9 @@ categories = ["Speech synthesis", "Python"]
 
 Googleが2017年4月に発表したEnd-to-Endの音声合成モデル [Tacotron: Towards End-to-End Speech Synthesis / arXiv:1703.10135 [cs.CL]](https://arxiv.org/abs/1703.10135) に興味があったので、自分でも同様のモデルを実装して実験してみました。結果わかったことなどをまとめておこうと思います。
 
-GoogleによるTacotronの音声サンプルは、 https://google.github.io/tacotron/ から聴けます。僕の実装による音声サンプルはこの記事の真ん中くらいから、あるいは  [Test Tacotron.ipynb | nbviewer](http://nbviewer.jupyter.org/github/r9y9/tacotron_pytorch/blob/master/notebooks/Test%20Tacotron.ipynb) から聴くことができます。
+GoogleによるTacotronの音声サンプルは、 https://google.github.io/tacotron/ から聴けます。僕の実装による音声サンプルはこの記事の真ん中くらいから、あるいは  [Test Tacotron.ipynb | nbviewer](http://nbviewer.jupyter.org/github/r9y9/tacotron_pytorch/blob/f98eda7336726cdfe4ab97ae867cc7f71353de50/notebooks/Test%20Tacotron.ipynb)[^1] から聴くことができます。
+
+[^1]: URLには現時点のgitのコミットハッシュが入っています。最新版は、 https://github.com/r9y9/tacotron_pytorch から直接辿ってください。
 
 とても長い記事になってしまったので、結論のみ知りたい方は、一番最後まで飛ばしてください。最後の方のまとめセクションに、実験した上で僕が得た知見がまとまっています。
 
@@ -36,10 +38,9 @@ Googleは実装を公開していませんが、オープンソース実装が�
 - https://github.com/barronalex/Tacotron
 - https://github.com/keithito/tacotron
 
-自分で実装する前に、上記をすべてを簡単に試したり、生成される音声サンプルを比較した上で、僕は [keithito/tacotron](https://github.com/keithito/tacotron) が一番良いように思いました。最も良いと思った点は、keithito さんは、[LJ Speech Dataset](https://keithito.com/LJ-Speech-Dataset/) という単一話者の英語読み上げ音声 **約24時間のデータセットを構築*
-[^1]: TensorFlowのseq2seqモジュール、抽象度が高すぎて辛くないですか* し、それを **public domainで公開** していることです。このデータセットは貴重です。[デモ音声サンプル](https://keithito.github.io/audio-samples/)は、そのデータセットを使った結果でもあり、他と比べてとても高品質に感じました。自分でも試してみて、1時間程度で英語らしき音声が生成できるようになったのと、さらに数時間でアライメントも学習されることを確認しました。
+自分で実装する前に、上記をすべてを簡単に試したり、生成される音声サンプルを比較した上で、僕は [keithito/tacotron](https://github.com/keithito/tacotron) が一番良いように思いました。最も良いと思った点は、keithito さんは、[LJ Speech Dataset](https://keithito.com/LJ-Speech-Dataset/) という単一話者の英語読み上げ音声 **約24時間のデータセットを構築** し、それを **public domainで公開** していることです。このデータセットは貴重です。[デモ音声サンプル](https://keithito.github.io/audio-samples/)は、そのデータセットを使った結果でもあり、他と比べてとても高品質に感じました。自分でも試してみて、1時間程度で英語らしき音声が生成できるようになったのと、さらに数時間でアライメントも学習されることを確認しました。
 
-なお、上記3つすべてで学習スクリプトを回して音声サンプルを得る、程度のことは試しましたが、僕がコードレベルで読んだのは [keithito/tacotron](https://github.com/keithito/tacotron) のみです。読んだコードは、tensorflowに詳しくない僕でも読めるもので、とても構造化されていて読みやすかったです。
+なお、上記3つすべてで学習スクリプトを回して音声サンプルを得る、程度のことは試しましたが、僕がコードレベルで読んだのは [keithito/tacotron](https://github.com/keithito/tacotron) のみです。読んだコードは、TensorFlowに詳しくない僕でも読めるもので、とても構造化されていて読みやすかったです。
 
 
 ## 自前実装
@@ -62,7 +63,7 @@ Googleは実装を公開していませんが、オープンソース実装が�
 - 学習が進むにつれて、生成される音声はどのように変わっていくのか
 - 学習されたモデルは、汎化性能はどの程度なのか（未知文章、長い文章、スペルミスに対してパフォーマンスはどう変わるのか、等）
 
-を探っていきます。
+を探っていきました。
 
 ### アライメントの学習過程の可視化
 
@@ -742,7 +743,7 @@ Your browser does not support the audio element.
 
 <div align="center"><img src="/audio/tacotron/5_ljspeech_sample/4_step720000_alignment.png" /></div>
 
-元音声があまり良いクリーンな音声ではないとはいえ、まー元音声とは大きな違いがありますねー、、厳しいです。スペクトログラム（貼ってないですが、すいません）を見ている限りでは、明らかに高周波数成分が抜け落ちているのはわかっています。ナイーブなアイデアではありますが、GANを導入すると良くなるのではないかと思っています。
+元音声があまり良いクリーンな音声ではないとはいえ、まー元音声とは大きな違いがありますねー、、厳しいです。スペクトログラムを見ている限りでは（貼ってないですが、すいません）、明らかに高周波数成分の予測が上手く言っていないことはわかっています。ナイーブなアイデアではありますが、GANを導入すると良くなるのではないかと思っています。
 
 ### おまけ：生成する度に変わる音声
 
@@ -764,17 +765,15 @@ def is_end_of_frames(output, eps=0.2):
     return (output.data <= eps).all()
 ```
 
-- 論文からは非自明な点の一つとして、エンコーダの出力のうち、入力のゼロ詰めした部分をマスキングするかどうか、といった点があります。これは、既存実装によってもまちまちで、例えば [keithito/tacotron](https://github.com/keithito/tacotron) ではマスキングしていませんが、[barronalex/Tacotron](https://github.com/barronalex/Tacotron/blob/2de9e507456cbe2b680cbc6b2beb6a761bd2eebd/models/tacotron.py#L51) ではマスクしています。僕はマスクする場合としない場合と両方試したのですが（ここに貼った結果は、マスクしていない場合のものです）、マスクしないほうが若干良くなったような気もします。理想的にはマスクするべきだと思ったのですが、実際に試したところどちらかが圧倒的に悪いという結果ではではなく、正直なところ断定はしにくいです。発見した大きな違いの一つは、マスクなしの場合はアテンションは大まかにmonotonicになる一方で、マスクありの場合は、無音区間ではエンコーダ出力の冒頭にアテンションの重みが大きくなる（ので、monotonicではない）、と言ったことがありました。マスクありの音声サンプル、アライメントの可視化は、（少し古いですが）[ここ](http://nbviewer.jupyter.org/github/r9y9/tacotron_pytorch/blob/bdad19fdff22016c7457a979707655bb7a605cd8/notebooks/Test%20Tacotron.ipynb) にあります。参考までに、Tensorflowでエンコーダの出力マスクする場合は、`memory_sequence_length` を指定します
-[^1]: TensorFlowのseq2seqモジュール、抽象度が高すぎて辛くないですか https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/BahdanauAttention
-- 実装してみて、たまたま得られた結果ではあるのですが、テスト時にdropoutを使っている都合上、生成する度に音声が若干変わる（場合によっては韻律等）場合があります。http://nbviewer.jupyter.org/gist/r9y9/fe1945b73cd5b98e97c61410fe26a851#Try-same-input-multiple-times
+- 論文からは非自明な点の一つとして、エンコーダの出力のうち、入力のゼロ詰めした部分をマスキングするかどうか、といった点があります。これは、既存実装によってもまちまちで、例えば [keithito/tacotron](https://github.com/keithito/tacotron) ではマスキングしていませんが、[barronalex/Tacotron](https://github.com/barronalex/Tacotron/blob/2de9e507456cbe2b680cbc6b2beb6a761bd2eebd/models/tacotron.py#L51) ではマスクしています。僕はマスクする場合としない場合と両方試したのですが（ここに貼った結果は、マスクしていない場合のものです）、マスクしないほうが若干良くなったような気もします。理想的にはマスクするべきだと思ったのですが、実際に試したところどちらかが圧倒的に悪いという結果ではありませんでした。発見した大きな違いの一つは、マスクなしの場合はアテンションは大まかにmonotonicになる一方で、マスクありの場合は、無音区間ではエンコーダ出力の冒頭にアテンションの重みが大きくなる（ので、monotonicではない）、と言ったことがありました。マスクありの音声サンプル、アライメントの可視化は、（少し古いですが）[ここ](http://nbviewer.jupyter.org/github/r9y9/tacotron_pytorch/blob/bdad19fdff22016c7457a979707655bb7a605cd8/notebooks/Test%20Tacotron.ipynb) にあります。参考までに、Tensorflowでエンコーダの出力マスクする場合は、`memory_sequence_length` を指定します https://www.tensorflow.org/api_docs/python/tf/contrib/seq2seq/BahdanauAttention
 - 日本語でやったり、multi-speaker でやったりしたかったのですが、とにかく実験に時間がかかるので、今のところ僕の中では優先度が低めになってしまいました。時間と計算資源に余裕があれば、やりたいのですが…
 - 日本語でやるには、英語と同じようにはいきません。というのも、char-levelで考えた際に、語彙が大きすぎるので。やるならば、十分大きな日本語テキストコーパスからembeddingを別途学習して（Tacotronでは、モデル自体にembeddingが入っています）、その他の部分を音声つきコーパスで学習する、といった方法が良いかなと思います。CSJコーパスは結構向いているんじゃないかと思っています。
 - multi-speakerモデルを考える場合、どこにembeddingを差し込むのか、といったことが重要になってきますが、[keithito/tacotron/issues/18](https://github.com/keithito/tacotron/issues/18) や [keithito/tacotron/issues/24](https://github.com/keithito/tacotron/issues/24) に少し議論があるので、興味のある人は見てみるとよいかもしれません。DeepVoiceの論文も参考になるかと思います
-- 最新のtensorflowでは、griffin lim や stft（GPUで走る、勾配が求められる）が実装されているので、tacotronモデルを少し拡張して、サンプルレベルでロスを考える、といったことが簡単に試せると思います（ある意味WaveNetです）。ただし、ものすごく計算リソースを必要とするのが容易に想像がつくので、僕はやっていません。GPU落ちてこないかな、、、
+- 最新のTensorFlowでは、griffin lim や stft（GPUで走る、勾配が求められる）が実装されているので、tacotronモデルを少し拡張して、サンプルレベルでロスを考える、といったことが簡単に試せると思います（ある意味WaveNetです）。ただし、ものすごく計算リソースを必要とするのが容易に想像がつくので、僕はやっていません。GPU落ちてこないかな、、、
 - Tacotronの拡張として、speaker embedding以外にも、いろんな潜在変数を埋め込んでみると、楽しそうに思いました。例えば話速、感情とか。
-- TensorFlowのseq2seqあたりのドキュメント/コードをよく読んでいたのですが、APIが抽象化されすぎていてつらいなと思いました。AttentionWrapper、コードを読まずに挙動を理解するのは無理なのではと思いました https://github.com/r9y9/tacotron_pytorch/issues/2#issuecomment-334255759
-- [keithito/tacotron](https://github.com/keithito/tacotron) は本当によく書かれているなと思ったので、Tensorflowに長けている方には、おすすめです
-- 僕の実装では、バッチサイズ32でGPUメモリ5, 6GB程度しか食わないので、Tacotronは比較的軽いモデルなのだなーと思いました。物体検出で有名な single shot multibox detector (通称SSD) なんかは、バッチサイズ16とかでも平気で12GBとか使ってくるので（一年近く前の経験ですが）、無限にGPUリソースがほしくなってきます
+- TensorFlowのseq2seqあたりのドキュメント/コードをよく読んでいたのですが、APIが抽象化されすぎていてつらいなと思いました。例えばAttentionWrapper、コードを読まずに挙動を理解するのは無理なのではと思いました https://github.com/r9y9/tacotron_pytorch/issues/2#issuecomment-334255759
+- [keithito/tacotron](https://github.com/keithito/tacotron) は本当によく書かれているなと思ったので、TensorFlowに長けている方には、おすすめです
+- 僕の実装では、バッチサイズ32でGPUメモリ5GB程度しか食わないので、Tacotronは比較的軽いモデルなのだなーと思いました。物体検出で有名な single shot multibox detector (通称SSD) なんかは、バッチサイズ16とかでも平気で12GBとか使ってくるので（一年近く前の経験ですが）、無限にGPUリソースがほしくなってきます
 - これが僕にとって、はじめてまともにseq2seqを実装した経験でした。色々勉強したのですが、Attention mechanism に関しては、 http://colinraffel.com/blog/online-and-linear-time-attention-by-enforcing-monotonic-alignments.html がとても参考になりました。あとで知ったのですが、monotonic attentionの著者は僕が昔から使っている音楽信号処理のライブラリ [librosa](https://github.com/librosa/librosa) のコミッタでした（僕も弱小コミッタの一人）。とても便利で、よくテストされているので、おすすめです。オープンソースのTacotron実装でも、音声処理にも使われています
 
 ## おわりに
