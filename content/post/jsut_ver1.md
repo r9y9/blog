@@ -1,7 +1,7 @@
 +++
 date = "2017-11-12T03:00:00+09:00"
 draft = false
-title = "日本語 End-to-end 音声合成に使えるコーパス JSUT の前処理"
+title = "日本語 End-to-end 音声合成に使えるコーパス JSUT の前処理 [arXiv:1711.00354]"
 tags  = [ "Speech", "corpus", "end-to-end"]
 categories = ["Speech synthesis", "Corpus"]
 +++
