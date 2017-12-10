@@ -49,7 +49,8 @@ ImageRGBA https://bokeh.pydata.org/en/latest/docs/reference/models/glyphs/image_
 
 [Jupyter Advent Calendar 2017](https://qiita.com/advent-calendar/2017/jupyter) 14日目の記事です。この記事は、Jupyter notebookで作成したものをnbconvertでmarkdownに変換し、手で少し修正して作りました。読み物としてはこの記事を、実行するにはノートブックの方を参照していただくのが良いかと思います。
 
-ノートブック: https://gist.github.com/r9y9/d57e797c28f6cdc4e44264411c21b76f
+- [ノートブック (gist)](https://gist.github.com/r9y9/d57e797c28f6cdc4e44264411c21b76f)
+- [nbviewer](http://nbviewer.jupyter.org/gist/r9y9/d57e797c28f6cdc4e44264411c21b76f)
 
 ## 概要
 
