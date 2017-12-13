@@ -1,5 +1,5 @@
 +++
-date = "2017-12-13T13:00:00+09:00"
+date = "2017-12-13T12:15:00+09:00"
 draft = false
 title = "【単一話者編】Deep Voice 3: 2000-Speaker Neural Text-to-Speech / arXiv:1710.07654 [cs.SD]"
 tags  = [ "Speech", "DNN"]
