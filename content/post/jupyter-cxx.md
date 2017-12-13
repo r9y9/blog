@@ -27,7 +27,7 @@ C++をJupyterで使う方法はいくつかあります。この記事では、�
 | %magics    | x                                    | %%cpp, %%jsroot, その他                                           | x                                                                    | △[^6]              |
 | 他言語との連携   | x                                    | Python, R [^3]                                              | x                                                                              | Julia           |
 | バイナリ配布     | [公式リンク](https://root.cern.ch/download/cling/) | [公式リンク](https://root.cern.ch/downloading-root) (python2系向け）                                  | condaで提供                     |         △[^2]        |
-| オンラインデモ   | x                                    | [rootdemo](https://swanserver.web.cern.ch/swanserver/rootdemo/) | [Jupyter blogの記事](https://blog.jupyter.org/interactive-workflows-for-c-with-jupyter-fe9b54227d92) より辿れます |x      |
+| オンラインデモ   | x                                    | [rootdemo](https://swanserver.web.cern.ch/swanserver/rootdemo/) | [binderリンク](https://mybinder.org/v2/gh/QuantStack/xeus-cling/0.0.7-binder?filepath=notebooks%2Fxcpp.ipynb) |x      |
 
 [^1]: clangをベースにしているので原理的には可能だと思いますが、少なくともjupyterカーネルとしてはありません
 [^2]: linux向け
@@ -123,7 +123,7 @@ clingだと `#include <iostream>`のあとにcode completionで落ちる、と�
 
 **使ってみた感想まとめ**
 
-かなりalphaバージョンの印象を受けました。現状トラブルなしに使えるというわけではないと思います。xplotには多少期待がありますが、matplotlib等pythonの可視化ツールでいいのでは…という気持ちになりました。
+少しalphaバージョンの印象を受けました。xplotなど周辺ツールへの期待がありますが、個人的にはmatplotlib等pythonの可視化ツールでいいのでは…という気持ちになりました。
 
 **参考リンク**
 
@@ -141,6 +141,7 @@ Cxx.jlは、clangをベースにしたJuliaのC++インタフェースです。J
 
 - JuliaとC++をミックスできます。過去記事に書きましたが、例えばC++関数内でJuliaのプログレスバーを使ったりできます
 - C++インタプリタとCインタプリタを切り替えられます
+- `icxx` と `cxx` マクロで、それぞれローカル/グローバルスコープを切り替えられます。
 - Juliaの配列をC++に渡すのは非常に簡単にできます。例を以下に示します
 
 ```jl
@@ -175,6 +176,7 @@ julia> icxx"f($(pointer(x)), $(length(x)));"
 
 - Cxxパッケージを読み込むのに多少時間がかかります。僕の環境では（プリコンパイルされた状態で）2.5秒程度でした
 - (Tab) Code completionは実装されていません [#61](https://github.com/Keno/Cxx.jl/issues/61)
+- `icxx` or `cxx` で囲まないといけず、syntax highlightはされません
 
 **使ってみた感想まとめ**
 
@@ -188,8 +190,8 @@ julia> icxx"f($(pointer(x)), $(length(x)));"
 ## まとめ
 
 - C++と他言語のやりとりのスムースさの観点から、やはり僕はCxx.jlが最高だと思いました。Cxx + JuliaのREPLも便利ですが、Cxx + IJuliaも良いと思います。
-- C++単体でしか使わない、ということであれば、cling or xeus-clingも良いと思います。ただし xeus-clingは、前述の通り外部ライブラリを読みこもうとするとエラーになる問題があったので、現状試すならパッチ ([xeus-cling/#94](https://github.com/QuantStack/xeus-cling/pull/94)) を当てること推奨です。
-- xeus-clingには、Jupyterブログにのっていたのでなんぼのもんかと思って試してみましたが、周辺ツール含め思ってたよりalpha版のようでした。また、他と比べての優位性はあまり感じませんでした。ただし、condaパッケージとして提供されているので、敷居が一番低いのは嬉しいですね
+- ただし、C++単体でしか使わない、ということであれば、cling or xeus-clingが良いと思います。ただし xeus-clingは、前述の通り外部ライブラリを読みこもうとするとエラーになる問題があったので、現状試すならパッチ ([xeus-cling/#94](https://github.com/QuantStack/xeus-cling/pull/94)) を当てること推奨です。
+- xeus-clingには、Jupyterブログにのっていたのでどんなものかと思って試してみましたが、周辺ツール含め思ってたよりalpha版のようでした。また、他と比べての優位性はあまり感じませんでした。ただし、condaパッケージとして提供されているので、敷居が一番低いのは嬉しいですね
 - ROOTのjupyter kernelは、C++とpythonをミックスできるのが特に良く、素晴らしいと思いました。また `%%cpp` magicの他にも、ipythonで使える `%timeit` などのmagicも使えるのは、ユーザにとっては嬉しいです。Cxx.jlを除けば、ROOTのカーネルが一番良いと思いました。ただし、個人的にはビルドに一番苦労しました。
 
 ## 参考
