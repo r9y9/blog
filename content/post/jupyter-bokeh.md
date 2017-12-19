@@ -1,5 +1,5 @@
 +++
-date = "2017-12-14T00:00:00+09:00"
+date = "2017-12-14T00:00:30+09:00"
 draft = false
 title = "ニューラルネットの学習過程の可視化を題材に、Jupyter + Bokeh で動的な描画を行う方法の紹介 [Jupyter Advent Calendar 2017]"
 tags  = [ "Jupyter", "Python", "Bokeh", "PyTorch"]
