@@ -19,7 +19,7 @@ categories = ["Speech synthesis", "Python"]
 
 ## 概要
 
-[前回の記事](/blog/2017/11/23/dctts/) で紹介した方法と、モチベーション、基本的な方法論はまったく同じのため省略します。モデルのアーキテクチャが異なりますが、その点についても前回述べたので、そちらを参照ください。
+[Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention. [arXiv:1710.08969]](/blog/2017/11/23/dctts/) で紹介した方法と、モチベーション、基本的な方法論はまったく同じのため省略します。モデルのアーキテクチャが異なりますが、その点についても前回述べたので、そちらを参照ください。
 今回の記事では、DeepVoice3のアーキテクチャをベースにした方法での実験結果をまとめます。
 
 ## 予備実験
@@ -45,6 +45,8 @@ Your browser does not support the audio element.
 </audio>
 
 いかがでしょうか。結構違いますよね。なお、改良前のモデルは53万イテレーション、改良後は21万イテレーション学習しました。回数を増やせばいいというものではないようです（当たり前ですが）。結論からいうと、モデルの自由度が足りなかったのが品質が向上しにくかった原因ではないかと考えています。
+
+**2017/12/21 追記**：すいません、21万イテレーションのモデルは、何かしら別の事前学習したモデルから、さらに学習したような気がしてきました…。ただ、合計で53万もイテレーションしていないのは間違いないと思います申し訳ございません
 
 ## 実験
 
@@ -216,4 +218,8 @@ Your browser does not support the audio element.
 
 - [Wei Ping, Kainan Peng, Andrew Gibiansky, et al, "Deep Voice 3: 2000-Speaker Neural Text-to-Speech", arXiv:1710.07654, Oct. 2017.](https://arxiv.org/abs/1710.07654)
 - [Jonas Gehring, Michael Auli, David Grangier, et al, "Convolutional Sequence to Sequence Learning", arXiv:1705.03122, May 2017.](https://arxiv.org/abs/1705.03122)
+- [Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention. [arXiv:1710.08969] | LESS IS MORE](/blog/2017/11/23/dctts/)
+
+## 関連記事
+
 - [Efficiently Trainable Text-to-Speech System Based on Deep Convolutional Networks with Guided Attention. [arXiv:1710.08969] | LESS IS MORE](/blog/2017/11/23/dctts/)

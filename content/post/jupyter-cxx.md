@@ -1,8 +1,8 @@
 +++
 date = "2017-12-21T00:00:00+09:00"
-draft = true
+draft = false
 title = "Interactive C++: Jupyter上で対話的にC++を使う方法の紹介 [Jupyter Advent Calendar 2017]"
-tags  = ["Jupyter", "C++", "Julia"]
+tags  = ["Jupyter", "C++", "Julia", "cling"]
 categories = ["C++", "Jupyter", "Julia"]
 +++
 
@@ -17,11 +17,11 @@ C++をJupyterで使う方法はいくつかあります。この記事では、�
 3. [xeus-cling](https://github.com/QuantStack/xeus-cling)
 4. [Keno/Cxx.jl](https://github.com/Keno/Cxx.jl) をIJuliaで使う
 
-まとめとして、簡単に特徴などを表にまとめておきます。
+まとめとして、簡単に特徴などを表にまとめておきますので、選ぶ際の参考にしてください。詳細な説明は後に続きます。
 
 |                  | [cling](https://github.com/root-project/cling)                                | [ROOT](https://github.com/root-project/root)                                                | [xeus-cling](https://github.com/QuantStack/xeus-cling)                                                                    | [Cxx.jl]((https://github.com/Keno/Cxx.jl)) + [IJulia](https://github.com/JuliaLang/IJulia.jl) |
 |------------------|--------------------------------------|-----------------------------------------------------|--------------------------------------------------------------------------------|-----------------|
-|インタプリタ実装 | C++ | C++ | C++ | Julia + C++ |
+|C++インタプリタ実装 | C++ | C++ | C++ | Julia + C++ |
 | (Tab) Code completion | ○                                    | ○                                                   | ○                                                                              | x               |
 | Cインタプリタ    | △[^1]                                    | △                                                   | △                                                                    | ○               |
 | %magics    | x                                    | %%cpp, %%jsroot, その他                                           | x                                                                    | △[^6]              |
@@ -56,7 +56,7 @@ clingは、いわずとしれた（？）C++インタプリタ実装です。後
 
 **使ってみた感想まとめ**
 
-個人的には、Jupyterは可視化と組み合わせてこそ良さがあると思っているのもありますが、あえてJupyterで使う必要性を僕は感じませんでした。cling自体はとても素晴らしいのと、ノートブックとして実行結果ごとコードを保存したい、といった目的でjupyterを使う場合には、良いと思います。
+個人的には、Jupyterは可視化と組み合わせてこそ良さがあると思っているのもありますが、あえてJupyterで使う必要性を僕は感じませんでした。cling自体はとても素晴らしいのと、ノートブックとして実行結果ごとコードを保存したい、といった目的でjupyterを使う場合には、良いと思いました。
 
 **注意**
 
@@ -72,7 +72,7 @@ clingは、いわずとしれた（？）C++インタプリタ実装です。後
 
 ## 2. ROOT
 
-ROOT自体（ソフトウェアがでかすぎる印象…）をよく触ったことがなく、はっきりとものをいえませんので（すいません）、ROOTの説明を公式ページから引用します：
+ROOTの説明を公式ページから引用します：
 
 > A modular scientific software framework. It provides all the functionalities needed to deal with big data processing, statistical analysis, visualisation and storage. It is mainly written in C++ but integrated with other languages such as Python and R.
 
@@ -96,9 +96,9 @@ ROOTプロジェクト自体にclingを含みますが、clingが提供するjup
 
 **使ってみた感想まとめ**
 
-Jupyterカーネルはclingのものよりも格段に良いと思いました。PythonとC++をミックスできるのが特に良いと思います。個人的には、ROOTが機能もりもりのデカイソフトウェアなことがあまり好きになれず、使い込んでいないのですが、ROOTのAPIに慣れた人、あるいは好きになれる人には、良いと思います。
+Jupyterカーネルはclingのものよりも良いと思いました。PythonとC++をミックスできるのが特に良いと思います。個人的には、ROOTが機能もりもりのデカイソフトウェアなことがあまり好きになれず、使い込んでいないのですが、ROOTのAPIに慣れた人、あるいは好きになれる人には、良いと思います。
 
-clingだと `#include <iostream>`のあとにcode completionで落ちる、というバグがありまたが、ROOT付属のcling (`ROOT 6.10/08` をソースからビルドして使いました) ではそのバグがありませんでした。
+clingだと `#include <iostream>`のあとにcode completionで落ちる、というバグがありまたが、ROOT付属のcling (`ROOT 6.10/08` をソースからビルドして使いました) ではそのバグはありませんでした。
 
 **参考リンク**
 
@@ -112,13 +112,13 @@ clingだと `#include <iostream>`のあとにcode completionで落ちる、と�
 
 **良いところ**
 
-- condaでパッケージとして提供されているので、インストールが楽。clang/clingもインストールしてくれます
+- condaでパッケージとして提供されているので、インストールが楽。clang/clingも併せてインストールしてくれます
 - 同じ開発元が、[xplot](https://github.com/QuantStack/xplot) という可視化ライブラリを提供している（ただしalphaバージョン）
 - 標準ライブラリのヘルプが `?` コマンドで確認できます (例. `?std::vector`)
 
 **イマイチなところ**
 
-- 外部ライブラリをロードしようとしたら動きませんでした（なので [プルリク](https://github.com/QuantStack/xeus-cling/pull/94) 投げました
+- 外部ライブラリをロードしようとしたら動きませんでした（なので [プルリク](https://github.com/QuantStack/xeus-cling/pull/94) 投げました（が、いい方法ではなかったようでcloseされました
 - ``%timeit`` の実装があったので試してみましたが、エラーが出て動きませんでした
 
 **使ってみた感想まとめ**
@@ -189,10 +189,10 @@ julia> icxx"f($(pointer(x)), $(length(x)));"
 
 ## まとめ
 
-- C++と他言語のやりとりのスムースさの観点から、やはり僕はCxx.jlが最高だと思いました。Cxx + JuliaのREPLも便利ですが、Cxx + IJuliaも良いと思います。
-- ただし、C++単体でしか使わない、ということであれば、cling or xeus-clingが良いと思います。ただし xeus-clingは、前述の通り外部ライブラリを読みこもうとするとエラーになる問題があったので、現状試すならパッチ ([xeus-cling/#94](https://github.com/QuantStack/xeus-cling/pull/94)) を当てること推奨です。
-- xeus-clingには、Jupyterブログにのっていたのでどんなものかと思って試してみましたが、周辺ツール含め思ってたよりalpha版のようでした。また、他と比べての優位性はあまり感じませんでした。ただし、condaパッケージとして提供されているので、敷居が一番低いのは嬉しいですね
-- ROOTのjupyter kernelは、C++とpythonをミックスできるのが特に良く、素晴らしいと思いました。また `%%cpp` magicの他にも、ipythonで使える `%timeit` などのmagicも使えるのは、ユーザにとっては嬉しいです。Cxx.jlを除けば、ROOTのカーネルが一番良いと思いました。ただし、個人的にはビルドに一番苦労しました。
+- C++と他言語のやりとりのスムースさの観点から、やはり僕は対話環境でC++を使うならCxx.jlが最高だと思いました。Cxx + JuliaのREPLも便利ですが、Cxx + IJuliaも良いと思います。
+- ただし、C++単体でしか使わない、ということであれば、cling or xeus-clingが良いと思います。ただし xeus-clingは、前述の通り外部ライブラリを読みこもうとするとエラーになる問題があったので、外部ライブラリを読み込んで使用したい場合はパッチ ([xeus-cling/#94](https://github.com/QuantStack/xeus-cling/pull/94)) を当てた方がよいかもしれません
+- xeus-clingには、Jupyterブログにのっていたのでどんなものかと思って試してみましたが、周辺ツール含め思ってたよりalpha版のようでした。また、他と比べての機能的な優位性はあまり感じませんでした。ただし、condaパッケージとして提供されているので、敷居が一番低いのは嬉しいですね
+- ROOTのjupyter kernelは、C++とpythonをミックスできるのが特に良く、素晴らしいと思いました。また `%%cpp` magicの他にも、ipythonで使える `%timeit` などのmagicも使えるのは、ユーザにとっては嬉しいです。Cxx.jlを除けば、ROOTのカーネルが一番良いと思いました。
 
 ## 参考
 
