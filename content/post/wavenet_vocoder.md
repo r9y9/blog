@@ -127,7 +127,7 @@ Your browser does not support the audio element.
 WaveNetが発表されたのは、一年以上前 ([記事](https://deepmind.com/blog/wavenet-generative-model-raw-audio/)) のことです。発表後すぐに、いくつかオープンソースの実装が出ていたように記憶しています。
 一方で、僕が確認していた限りでは、local / global conditioningを十分にサポートした実装がなかったように思います。
 例えば、Githubで一番スターが付いている [ibab/tensorflow-wavenet](https://github.com/ibab/tensorflow-wavene) では、いまだに十分にサポートされていません（[#112](https://github.com/ibab/tensorflow-wavenet/issues/112)）。
-これはつまり、生成モデルとしては使えても、TTSには使えない、ということで、僕の要望を満たしてくれるものではありませんでした。また、ちょうど最近、Paralle WaveNetが発表されたのもあり、勉強も兼ねて、local / global conditioningを最低要件として置いて、自分で実装してみようと思った次第です。
+これはつまり、生成モデルとしては使えても、TTSには使えない、ということで、僕の要望を満たしてくれるものではありませんでした。また、ちょうど最近、Parallel WaveNetが発表されたのもあり、勉強も兼ねて、local / global conditioningを最低要件として置いて、自分で実装してみようと思った次第です。
 
 実装を通して僕が一番知りたかった（体感したかった）のは、WaveNetで本当に自然音声並みの品質の音声を生成できるのか？ということなので、Parallel WaveNetで提案されているような推論を高速化するための工夫に関しては手を付けていませんので、あしからず。
 
