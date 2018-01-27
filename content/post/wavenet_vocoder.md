@@ -135,6 +135,7 @@ WaveNetが発表されたのは、一年以上前 ([記事](https://deepmind.com
 
 - Dropoutの有無については、WaveNetの論文に書いていませんが、僕は5%をゼロにする形で使いました。問題なく動いていそうです。PixelCNN++にはDropoutを使う旨が書かれていたので、WaveNetでも使われているのかなと推測しています。
 - Gradient clippingの有無は、両方試しましたが、なくてもあっても学習は安定していました。
+- 条件付けする特徴量と音声サンプルの時間解像度を合わせるのには、（少なくともLJSpeechを使う場合には）同じ値をduplicateするのではなく、Transposed convolutionを使うほうが良い。 ref: [r9y9/wavenet_vocoder/#1](https://github.com/r9y9/wavenet_vocoder/issues/1#issuecomment-357486766)
 - Mixture of logistic distributionsを使う場合は、分散の下限を小さくするのが重要な気がしました (PixelCNN++でいう[pixel_cnn_pp/nn.py#L54](https://github.com/openai/pixel-cnn/blob/2b03725126c580a07af47c498d456cec17a9735e/pixel_cnn_pp/nn.py#L54) の部分)。でないと、生成される音声がノイジーになりやすい印象を受けました。直感的には、external featureで条件付けする場合は特に、logistic distributionがかなりピーキー（分散がすごく小さく）なり得るので、そのピーキーな分布を十分表現できる必要があるのかなと思っています。生成時には確率分布からサンプリングすることになるので、分散の下限値を大きくとってしまった場合、ノイジーになりえるのは想像がつきます。 ref: [r9y9/wavenet_vocoder/#7](https://github.com/r9y9/wavenet_vocoder/issues/7#issuecomment-360011074)
 - WaveNetの実装は（比較的）簡単だったので、人のコード読むのツライ…という方は、（僕のコードを再利用なんてせずに）自分で実装するのも良いかなと思いました。勉強にもなりました。
 - WaveNetが発表された当時は、個人レベルの計算環境でやるのは無理なんじゃないかと思って手を出していなかったのですが、最近はそれが疑問に思えてきたので、実際にやってみました。僕のPCには1台しかGPUがついていませんが、個人でも可能だと示せたかと思います。
