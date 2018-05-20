@@ -22,7 +22,9 @@ Your browser does not support the audio element.
 
 - 自作WaveNet (**WN**) と既存実装Tacotron 2 (WNを除く) を組み合わせて、英語TTSを作りました
 - LJSpeechを学習データとした場合、自分史上 **最高品質** のTTSができたと思います
-- Tacotron 2 の解説はしません。申し訳ありません（なぜなら僕がまだ十分に読み込んでいないため）
+- Tacotron 2と Deep Voice 3 のabstractを読ませた音声サンプルを貼っておきますので、興味のある方はどうぞ
+
+なお、Tacotron 2 の解説はしません。申し訳ありません（なぜなら僕がまだ十分に読み込んでいないため）
 
 ## 背景
 
