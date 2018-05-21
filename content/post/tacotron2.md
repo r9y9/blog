@@ -47,9 +47,9 @@ Your browser does not support the audio element.
 
 ### WaveNet
 
-- 1000k step以上訓練されたモデル (2017/1/27に作ったもの、10日くらい[^1]学習した）をベースに、さらに 320k step学習（約3日）しました。再学習したのは、以前のコードには [wavenet_vocoder/issues/33](https://github.com/r9y9/wavenet_vocoder/issues/33) こんなバグがあったからです。
+- 1000k step以上訓練されたモデル (2018/1/27に作ったもの、10日くらい[^1]学習した）をベースに、さらに 320k step学習（約3日）しました。再学習したのは、以前のコードには [wavenet_vocoder/issues/33](https://github.com/r9y9/wavenet_vocoder/issues/33) こんなバグがあったからです。
 - 評価には、exponential moving averagingされたパラメータを使いました。decay パラメータはTaco2論文と同じ 0.9999
-- 学習には、Mel-spectrogram prediction networkにより出力される Ground-trouth-aligned (GTA) なメルスペクトログラムではなく、生音声から計算されるメルスペクトログラムを使いました。時間の都合上そうしましたが、GTAを使うとより品質が向上すると考えられます
+- 学習には、Mel-spectrogram prediction networkにより出力される Ground-truth-aligned (GTA) なメルスペクトログラムではなく、生音声から計算されるメルスペクトログラムを使いました。時間の都合上そうしましたが、GTAを使うとより品質が向上すると考えられます
 
 ### Tacotron 2 (mel-spectrogram prediction)
 
