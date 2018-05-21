@@ -6,7 +6,7 @@ tags  = [ "Speech", "DNN", "WaveNet"]
 categories = ["Speech synthesis", "Python"]
 +++
 
-Thank you for comming to see my blog post about WaveNet text-to-speech.
+Thank you for coming to see my blog post about WaveNet text-to-speech.
 
 <audio controls="controls" >
 <source src="/audio/tacotron2/intro.wav" autoplay/>
