@@ -28,7 +28,7 @@ Your browser does not support the audio element.
 
 ## 背景
 
-過去に、WaveNetを実装しました（参考: [WaveNet vocoder をやってみましたので、その記録です / WaveNet: A Generative Model for Raw Audio [arXiv:1609.03499]](/blog/2018/01/28/wavenet_vocoder/)）。過去事   から引用します。
+過去に、WaveNetを実装しました（参考: [WaveNet vocoder をやってみましたので、その記録です / WaveNet: A Generative Model for Raw Audio [arXiv:1609.03499]](/blog/2018/01/28/wavenet_vocoder/)）。過去記事から引用します。
 
 > Tacotron2 は、あとはやればほぼできる感じですが、直近では僕の中で優先度が低めのため、しばらく実験をする予定はありません。興味のある方はやってみてください。
 
