@@ -1,5 +1,5 @@
 ---
-title: "    NNSVS: Pytorchベースの研究用歌声合成ライブラリ"
+title: "NNSVS: Pytorchベースの研究用歌声合成ライブラリ"
 date: 2020-05-10T14:42:25+09:00
 draft: false
 ---
