@@ -10,8 +10,7 @@ categories: ["Speech synthesis"]
 
 ## まとめ
 
-最近いろんな研究で [LJSpeech](
-- LJSpeech Dataset: https://keithito.com/LJ-Speech-Dataset/) が使われていますが、合成音の品質を比べるならクリーンなデータセットを使ったほうがいいですね。でないと、合成音声に含まれるノイズがモデルの限界からくるノイズなのかコーパスの音声が含むノイズ（LJSpeechの場合リバーブっぽい音）なのか区別できなくて、公平に比較するのが難しいと思います。
+最近いろんな研究で [LJSpeech](https://keithito.com/LJ-Speech-Dataset/) が使われていますが、合成音の品質を比べるならクリーンなデータセットを使ったほうがいいですね。でないと、合成音声に含まれるノイズがモデルの限界からくるノイズなのかコーパスの音声が含むノイズ（LJSpeechの場合リバーブっぽい音）なのか区別できなくて、公平に比較するのが難しいと思います。
 
 例えば、LJSpeechを使うと、ぶっちゃけ [WaveGlow](https://nv-adlr.github.io/WaveGlow) がWaveNetと比べて品質がいいかどうかわかんないですよね…[^1].
 例えば最近のNICT岡本さんの研究 ([基本周波数とメルケプストラムを用いたリアルタイムニューラルボコーダに関する検討]( https://www.slideshare.net/Takuma_OKAMOTO/ss-135604814)) を引用すると、実際にクリーンなデータで実験すれば（Noise shaping なしで）MOS は WaveNet (**4.19**) > WaveGlow (3.27) と、結構な差が出たりします。LJSpeechを使った場合の WaveGlow (**3.961**) > WaveNet (3.885) と比べると大きな差ですね。
