@@ -16,6 +16,7 @@ author = "Ryuichi YAMAMOTO"
   mainSections = ["post"]
 
 [markup]
+  defaultMarkdownHandler = "Blackfriday"
   [markup.goldmark]
     [markup.goldmark.renderer]
       unsafe = true
