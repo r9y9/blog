@@ -1,4 +1,5 @@
 baseurl = "http://r9y9.github.io/"
+DefaultContentLanguage = "ja"
 languageCode = "ja-jp"
 title = "LESS IS MORE"
 author = "Ryuichi YAMAMOTO"
