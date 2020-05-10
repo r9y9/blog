@@ -45,7 +45,7 @@ draft: false
 
 過去に [nnmnkwii](https://github.com/r9y9/nnmnkwii)という音声合成のためのライブラリを作りました。その際には、任意の数値微分ライブラリと使えるようにと考えて設計しましたが、nnsvsはあえてpytorchに依存した形で作ります。
 
-PYtorchと切り離して設計すると汎用的にしやすい一方で、[Kaldi](https://github.com/kaldi-asr/kaldi) や[ESPnet](https://github.com/espnet/espnet) のようなプロジェクトで成功している**レシピ**というものが作りずらいです。ESPnetに多少関わって、再現性の担保の重要性を身にしみて感じつつあるので、Pytorchベースの学習、推論など、歌声合成のモデルを構築するために必要なすべてをひっくるめたソフトウェアを目指したいと思います。
+Pytorchと切り離して設計すると汎用的にしやすい一方で、[Kaldi](https://github.com/kaldi-asr/kaldi) や[ESPnet](https://github.com/espnet/espnet) のようなプロジェクトで成功している**レシピ**というものが作りずらいです。ESPnetに多少関わって、再現性の担保の重要性を身にしみて感じつつあるので、Pytorchベースの学習、推論など、歌声合成のモデルを構築するために必要なすべてをひっくるめたソフトウェアを目指したいと思います。
 
 ### レシピの提供
 
