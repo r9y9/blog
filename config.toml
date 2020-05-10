@@ -13,3 +13,9 @@ author = "Ryuichi YAMAMOTO"
   twitter   = "r9y9"
   github    = "r9y9"
   analytics = "UA-44433856-1"
+  mainSections = ["post"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true

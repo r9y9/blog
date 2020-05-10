@@ -1,7 +1,7 @@
 {{ partial "header.html" . }}
 
 	<main role="main">
-{{ $pages := where .Data.Pages "Type" "post" }}
+{{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{ range $pages }}
 		<article itemscope itemtype="https://schema.org/Blog">
 			<h2 class="entry-title" itemprop="headline"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
