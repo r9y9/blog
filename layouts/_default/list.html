@@ -8,6 +8,9 @@
 			<span class="entry-meta"><time itemprop="datePublished" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "January 02, 2006" }}</time></span>
 		</article>
 {{ end }}
+<div class="index-content">
+	{{ .Content }}
+</div>
 	</main>
 
 {{ partial "footer.html" . }}

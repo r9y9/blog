@@ -1,6 +1,9 @@
 {{ partial "header.html" . }}
 
 	<main role="main">
+	<div class="index-content">
+		{{ .Content }}
+	</div>
 {{ $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
 {{ range $pages }}
 		<article itemscope itemtype="https://schema.org/Blog">
